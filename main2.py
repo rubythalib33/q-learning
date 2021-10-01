@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 import pickle
 from matplotlib import style
 import time
+import logging as log
 
-style.use("ggplot")
+style.use("seaborn")
 
 SIZE = 10
 EPISODES = 35000
@@ -21,7 +22,7 @@ SHOW_EVERY = 3000
 
 start_q_table = None #or filename
 
-LEARNING_RATE = 0.1
+LEARNING_RATE = 0.001
 DISCOUNT = 0.95
 
 PLAYER_N = 1
@@ -89,8 +90,8 @@ for episode in range(EPISODES):
     enemy = Blob()
 
     if episode % SHOW_EVERY == 0:
-        print(f'on # {episode}, epsilon: {epsilon}')
-        print(f'{SHOW_EVERY} ep mean {np.mean(episode_rewards[-SHOW_EVERY:])}')
+        log.info(f'on # {episode}, epsilon: {epsilon}')
+        log.info(f'{SHOW_EVERY} ep mean {np.mean(episode_rewards[-SHOW_EVERY:])}')
         show = True
     else:
         show = False
